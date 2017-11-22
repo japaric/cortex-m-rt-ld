@@ -32,36 +32,51 @@ fn main() {
     // parse the stdout of `size`
     let mut bss = None;
     let mut data = None;
+    let mut heap = None;
     let mut sram = None;
     let mut ram = None;
     for line in stdout.lines() {
         if line.starts_with(".bss") {
-            // .bss $bss 0x20000000
-            bss = line.split_whitespace()
-                .nth(1)
-                .map(|s| s.parse::<u32>().unwrap());
+            // e.g. .bss $bss 0x20000000
+            bss = line.split_whitespace().nth(1).map(|s| {
+                s.parse::<u32>().expect(".bss size should've be an integer")
+            });
         } else if line.starts_with(".data") {
-            // .data $data 0x20000010
-            data = line.split_whitespace()
-                .nth(1)
-                .map(|s| s.parse::<u32>().unwrap());
+            // e.g. .data $data 0x20000010
+            data = line.split_whitespace().nth(1).map(|s| {
+                s.parse::<u32>()
+                    .expect(".data size should've be an integer")
+            });
         } else if line.starts_with(".stack") {
-            // .stack $ram $sram
+            // e.g. .stack $ram $sram
             let mut parts = line.split_whitespace().skip(1);
-            ram = parts.next().map(|s| s.parse::<u32>().unwrap());
-            sram = parts.next().map(|s| s.parse::<u32>().unwrap());
+            ram = parts.next().map(|s| {
+                s.parse::<u32>()
+                    .expect(".stack size should've been an integer")
+            });
+            sram = parts.next().map(|s| {
+                s.parse::<u32>()
+                    .expect(".stack addr should've been an integer")
+            });
+        } else if line.starts_with(".heap") {
+            // e.g. .heap $heap 0x20000020
+            heap = line.split_whitespace().nth(1).map(|s| {
+                s.parse::<u32>()
+                    .expect(".heap addr should've been an integer")
+            });
         }
     }
 
     // compute the new start address of the (.bss+.data) section
     // the relocated stack will start at that address as well (and grow downwards)
-    let bss = bss.unwrap();
-    let data = data.unwrap();
-    let sram = sram.unwrap();
-    let ram = ram.unwrap();
+    let bss = bss.expect(".bss section missing");
+    let data = data.expect(".data section missing");
+    let heap = heap.expect(".data section missing");
+    let sram = sram.expect(".stack section missing");
+    let ram = ram.expect(".stack section missing");
     let eram = sram + ram;
 
-    let sbss = eram - bss - data;
+    let sbss = eram - bss - data - heap;
 
     let mut ld2 = Command::new("arm-none-eabi-ld");
     ld2.arg(format!("--defsym=_sbss={}", sbss))
