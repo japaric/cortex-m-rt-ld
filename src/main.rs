@@ -62,16 +62,16 @@ fn main() {
             // e.g. .heap $heap 0x20000020
             heap = line.split_whitespace().nth(1).map(|s| {
                 s.parse::<u32>()
-                    .expect(".heap addr should've been an integer")
+                    .expect(".heap size should've been an integer")
             });
         }
     }
 
     // compute the new start address of the (.bss+.data) section
     // the relocated stack will start at that address as well (and grow downwards)
-    let bss = bss.expect(".bss section missing");
-    let data = data.expect(".data section missing");
-    let heap = heap.expect(".data section missing");
+    let bss = bss.unwrap_or(0);
+    let data = data.unwrap_or(0);
+    let heap = heap.unwrap_or(0);
     let sram = sram.expect(".stack section missing");
     let ram = ram.expect(".stack section missing");
     let eram = sram + ram;
