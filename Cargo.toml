@@ -1,6 +1,9 @@
 [package]
-name = "swap-ld"
-version = "0.1.0"
 authors = ["Jorge Aparicio <jorge@japaric.io>"]
-
-[dependencies]
+categories = ["command-line-utilities", "embedded", "no-std"]
+description = "Zero cost stack overflow protection for ARM Cortex-M devices"
+keywords = ["arm", "cortex-m", "stack", "overflow"]
+license = "MIT OR Apache-2.0"
+name = "cortex-m-rt-ld"
+repository = "https://github.com/japaric/cortex-m-rt-ld"
+version = "0.1.0"

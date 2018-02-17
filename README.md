@@ -1,9 +1,8 @@
-# `swap-ld`
+# `cortex-m-rt-ld`
 
-> Swaps the stack and (.bss+.data) linker sections for zero cost stack overflow protection
+> Zero cost stack overflow protection for ARM Cortex-M devices
 
-See [japaric/cortex-m-rt#34](https://github.com/japaric/cortex-m-rt/issues/34) for background
-information.
+See [this blog post](http://blog.japaric.io/stack-overflow-protection) for background information.
 
 ## License
 
