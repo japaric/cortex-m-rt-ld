@@ -2,7 +2,10 @@
 
 > Zero cost stack overflow protection for ARM Cortex-M devices
 
-See [this blog post](http://blog.japaric.io/stack-overflow-protection) for background information.
+See [this blog post](http://blog.japaric.io/stack-overflow-protection) for background information
+and [`cortex-m-rt`] documentation for usage instructions.
+
+[`cortex-m-rt`]: https://docs.rs/cortex-m-rt/0.3.13/cortex_m_rt/#zero-cost-stack-overflow-protection
 
 ## License
 

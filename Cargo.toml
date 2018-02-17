@@ -5,5 +5,6 @@ description = "Zero cost stack overflow protection for ARM Cortex-M devices"
 keywords = ["arm", "cortex-m", "stack", "overflow"]
 license = "MIT OR Apache-2.0"
 name = "cortex-m-rt-ld"
+readme = "README.md"
 repository = "https://github.com/japaric/cortex-m-rt-ld"
 version = "0.1.0"
