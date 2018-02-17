@@ -1,3 +1,9 @@
+//! Zero cost stack overflow protection
+//!
+//! For details check out the documentation of the [`cortex-m-rt`] crate.
+//!
+//! [`cortex-m-rt`]: https://docs.rs/cortex-m-rt/0.3.13/cortex_m_rt/#zero-cost-stack-overflow-protection
+
 use std::env;
 use std::process::Command;
 
@@ -38,9 +44,9 @@ fn main() {
     for line in stdout.lines() {
         if line.starts_with(".bss") {
             // e.g. .bss $bss 0x20000000
-            bss = line.split_whitespace().nth(1).map(|s| {
-                s.parse::<u32>().expect(".bss size should've be an integer")
-            });
+            bss = line.split_whitespace()
+                .nth(1)
+                .map(|s| s.parse::<u32>().expect(".bss size should've be an integer"));
         } else if line.starts_with(".data") {
             // e.g. .data $data 0x20000010
             data = line.split_whitespace().nth(1).map(|s| {

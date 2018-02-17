@@ -1,4 +1,4 @@
 [[package]]
-name = "swap-ld"
+name = "cortex-m-rt-ld"
 version = "0.1.0"
 
