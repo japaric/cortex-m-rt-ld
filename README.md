@@ -7,6 +7,8 @@ and [`cortex-m-rt`] documentation for usage instructions.
 
 [`cortex-m-rt`]: https://docs.rs/cortex-m-rt/0.3.13/cortex_m_rt/#zero-cost-stack-overflow-protection
 
+**IMPORTANT** `cortex-m-rt-ld` requires that the binary links to `cortex-m-rt` v0.3.13 or newer.
+
 ## License
 
 Licensed under either of

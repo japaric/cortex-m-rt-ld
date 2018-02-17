@@ -78,8 +78,8 @@ fn main() {
     let bss = bss.unwrap_or(0);
     let data = data.unwrap_or(0);
     let heap = heap.unwrap_or(0);
-    let sram = sram.expect(".stack section missing");
-    let ram = ram.expect(".stack section missing");
+    let sram = sram.expect(".stack section missing. Are you using `cortex-m-rt` v0.3.13 or newer?");
+    let ram = ram.expect(".stack section missing. Are you using `cortex-m-rt` v0.3.13 or newer?");
     let eram = sram + ram;
 
     let sbss = eram - bss - data - heap;
