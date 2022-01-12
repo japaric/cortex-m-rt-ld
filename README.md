@@ -1,4 +1,4 @@
-This version is no longer maintained. Use flip-link instead: https://github.com/knurling-rs/flip-link
+This tool is no longer maintained. Use flip-link instead: https://github.com/knurling-rs/flip-link
 
 ---
 
