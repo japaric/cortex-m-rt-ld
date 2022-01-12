@@ -1,3 +1,7 @@
+This version is no longer maintained. Use flip-link instead: https://github.com/knurling-rs/flip-link
+
+---
+
 # `cortex-m-rt-ld`
 
 > Zero cost stack overflow protection for ARM Cortex-M devices
